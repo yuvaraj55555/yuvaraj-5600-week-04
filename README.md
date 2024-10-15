@@ -1,5 +1,18 @@
 # Lab 04 | Fullstack Prints Part 1
 
+## Table of Contents
+
+1. [Lab 04 | Fullstack Prints Part 1](#lab-04--Fullstack Prints Part 1)
+   - [Overview](#overview)
+   - [Instructions](#instructions)
+2. [Guidance and Testing](#guidance-and-testing)
+3. [Submission](#submission)
+4. [Getting Started with GitHub and Codespaces](#getting-started-with-github-and-codespaces)
+   - [Step 1: Fork the Repository](#step-1-fork-the-repository)
+   - [Step 2: Open the Repository in Codespaces](#step-2-open-the-repository-in-codespaces)
+   - [Step 3: Complete the Lab Assignment](#step-3-complete-the-lab-assignment)
+   - [Step 4: Submit Your Work via Pull Request](#step-4-submit-your-work-via-pull-request)
+
 ## Overview
 
 In this lab, we will be building a simple eCommerce server. We will be using Node.js and Express to build our server. We will use this as the basis for our future labs. This eCommerce server will be pretty basic. It will:
@@ -24,15 +37,12 @@ The frontend will be provided for you during this lab. We will focus 100% on bui
 
 2. Next you'll see our `public/index.html` file. This file will fetch our products from the `/products` endpoint and quickly renders them to the page. We won't go in too much detail
 over what is happening there, but you can review the code if you are curious.
+
 3. Before we go too further in the lab, let's modularize and clean up our codebase. An important part of web development is abstraction. Typically, the less code you have to review at a given time, the less cognitive load you have to deal with. This is why we want to abstract our code into modules. This also makes refactoring easier and allows us to reuse code. For our server, we want to pull all of our route handlers into their own file. This will allow us to keep our `app.js` file clean and easy to read. Begin by creating a new file called `api.js` and moving all of our route handlers there:
 
 ```js
 // api.js
-
-module.exports = {
-  handleRoot,
-  listProducts
-}
+const path = require('path')
 
  /**
  * Handle the root route
@@ -61,6 +71,11 @@ async function listProducts (req, res) {
   } catch (err) {
     res.status(500).json({ error: err.message })
   }
+}
+
+module.exports = {
+  handleRoot,
+  listProducts
 }
 ```
 
@@ -122,7 +137,8 @@ async function listProducts (req, res) {
 }
 ```
 
-Great - refactoring is done! Rebuild your replit and review it in the browser. If everything looks good, let's move on to the next step.
+Great - refactoring is done! Review your app in the browser. If everything looks good, let's move on to the next step.
+
 5. At the moment, our server always returns the same data set, and only returns all of the data at once. Typically, a webserver allows for filtering or pagination of data. Let's configure our server to allow for two optional queries: `limit` and `offset`. These queries will allow us to limit the number of products returned, and the offset of the products returned. For example, if we had 100 products, and we wanted to return the first 10 products, we would use the following query: `?limit=10&offset=0`. If we wanted to return the next 10 products, we would use the following query: `?limit=10&offset=10`. Let's update our `api.js` to handle these queries:
 
 We will update our `listProducts` method to extract the `limit` and `offset` query parameters from the request. We will then pass these parameters to the `Products.list` method. We will also update the `Products.list` method to accept these parameters and use them to filter the products. Finally, we will update the `Products.list` method to return an object that contains the products and the total number of products. This will allow us to return the total number of products to the client, which will allow us to implement pagination in the future.
@@ -169,7 +185,7 @@ async function list (options = {}) {
 }
 ```
 
-Restart your replit and review it in the browser, you should be able to visit `/products?limit=1&offset=20` and see a filtered subset of products. If everything looks good, let's move on to the next step.
+Review this in the browser, you should be able to visit `/products?limit=1&offset=20` and see a filtered subset of products. If everything looks good, let's move on to the next step.
 
 6. Modern web APIs typically allow for filtering of data as well. Let's add a `tag` query parameter to our endpoint, so we can filter out specific products. For example, if we wanted to filter out all products that have the tag `electronics`, we would use the following query: `?tag=electronics`. On your own, update the `api.js` and `products.js` files to handle this query parameter. You can use the `limit` and `offset` query parameters as a reference. You should use `Array.filter` in the `Products.list()` method to filter the products based on the tag.
 
@@ -396,7 +412,7 @@ async function createProduct (req, res) {
 }
 ```
 
-This is just a placeholder for now. We will update this method to create a new product in the next step. You can test it by rebuilding your replit lab, and using Postman to send a POST request to the `/products` endpoint. You should see the request body in the console.
+This is just a placeholder for now. We will update this method to create a new product in the next step. You can test this by taking the Codespace app URL, and using Postman to send a POST request to the `/products` endpoint. You should see the request body in the console.
 
 Great! Now we almost have a working application. Please proceed to the next section to complete the final steps on your own.
 
@@ -405,12 +421,10 @@ Great! Now we almost have a working application. Please proceed to the next sect
 To complete this lab you will need to add the following features:
 
 1. Add the ability to filter products by a given tag. This will require you to pass an additional property to the `Products.list()` method. You can use the `tag` query parameter to filter the products. Use an array method such as `Array.filter` to filter the products by the `product.tag` property.
+
 2. Add a DELETE route to the `app.js` module and register a delete method with the `products.js` module. This task will require you to create a new method in the `products.js` module and route similar to the `products.createProduct` method. You will need to use the `Products.delete()` method to delete the product. The method body does not need to _truly_ delete the product. It can simply return a 202 response and log a message to the server console that the product was deleted.
+
 3. Add a PUT route to the `app.js` module that will be used to update a product. This task will require you to create a new method in the `products.js` module and route similar to the `products.createProduct` method. You will need to use the `Products.update()` method to update the product. The method body does not need to _truly_ update the product. It can simply return a 200 response and log a message to the server console that the product was updated.
-
-## Extra Credit
-
-1. Refactor the `Products.get()` method to use an array method such as `.find` or `.map` to find a product instead of a standard for loop.
 
 ## Guidance and Testing
 
@@ -419,7 +433,9 @@ To complete this lab you will need to add the following features:
 
 ## Submission
 
-Once you have completed the lab, please submit your code to the Replit classroom. You can do this by clicking the "Share" button in the top right corner of the Replit editor. Then, click the "Share to Classroom" button. You should see a list of classes that you are enrolled in. Select the class that you are enrolled in and click the "Share" button. You should see a message that your code has been shared with the class. You can now close the share window.
+Once you have completed the lab, please submit your lab by committing the code and creating a pull request against the `main` branch of your forked repository.
+
+Once you have a URL for your Pull Request, submit that URL with a brief message in Canvas against the Assignment.
 
 # Getting Started with GitHub and Codespaces
 
@@ -432,7 +448,7 @@ Forking a repository means making a copy of it under your GitHub account. This a
 1. **Open the Repository**: Start by navigating to the GitHub repository link provided by your instructor.
 2. **Click "Fork"**: In the top-right corner, find the “Fork” button and click it.
 3. **Select Your Account**: Choose your GitHub account as the destination for the fork. Once done, you’ll be redirected to your forked copy of the repository.
-   
+
    > **Tip**: Make sure you’re logged into your GitHub account, or you won’t see the option to fork!
 
 ## Step 2: Open the Repository in Codespaces
@@ -474,15 +490,16 @@ Once you’ve completed the assignment, it’s time to submit your work. You’l
 
 And that’s it! You’ve now completed your first lab assignment using GitHub and Codespaces. Well done!
 
-
 ### Additional Steps
 
 1. Open the terminal in Codespaces.
 2. Run the following commands to install dependencies and start the development server:
+
     ```sh
     npm install
     npm run dev
     ```
+
 3. You can now view the project in the browser by clicking the "Application" port in the Ports panel.
 
 Follow the instructions in the previous sections to complete the lab.
