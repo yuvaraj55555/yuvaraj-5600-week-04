@@ -423,11 +423,9 @@ Great! Now we almost have a working application. Please proceed to the next sect
 
 To complete this lab you will need to add the following features:
 
-1. Add the ability to filter products by a given tag. This will require you to pass an additional property to the `Products.list()` method. You can use the `tag` query parameter to filter the products. Use an array method such as `Array.filter` to filter the products by the `product.tag` property.
+1. Add a DELETE route to the `app.js` module and register a delete method with the `products.js` module. This task will require you to create a new method in the `products.js` module and route similar to the `products.createProduct` method. You will need to use the `Products.delete()` method to delete the product. The method body does not need to _truly_ delete the product. It can simply return a 202 response and log a message to the server console that the product was deleted.
 
-2. Add a DELETE route to the `app.js` module and register a delete method with the `products.js` module. This task will require you to create a new method in the `products.js` module and route similar to the `products.createProduct` method. You will need to use the `Products.delete()` method to delete the product. The method body does not need to _truly_ delete the product. It can simply return a 202 response and log a message to the server console that the product was deleted.
-
-3. Add a PUT route to the `app.js` module that will be used to update a product. This task will require you to create a new method in the `products.js` module and route similar to the `products.createProduct` method. You will need to use the `Products.update()` method to update the product. The method body does not need to _truly_ update the product. It can simply return a 200 response and log a message to the server console that the product was updated.
+2. Add a PUT route to the `app.js` module that will be used to update a product. This task will require you to create a new method in the `products.js` module and route similar to the `products.createProduct` method. You will need to use the `Products.update()` method to update the product. The method body does not need to _truly_ update the product. It can simply return a 200 response and log a message to the server console that the product was updated.
 
 ## Guidance and Testing
 
