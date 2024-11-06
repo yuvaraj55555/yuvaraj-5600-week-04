@@ -229,6 +229,8 @@ async function getProduct (req, res, next) {
       // next() is a callback that will pass the request to the next available route in the stack
       return next()
     }
+
+    return res.json(product)
   } catch (err) {
     res.status(500).json({ error: err.message })
   }
