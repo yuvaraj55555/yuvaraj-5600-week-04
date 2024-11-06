@@ -7,7 +7,7 @@ listPrints({offset, limit, tag})
   .then(prints => render({prints, offset, limit, tag}))
 
 function listPrints ({offset = 0, limit = 25, tag}) {
-  const endpoint = 'http://localhost:1337/products'
+  const endpoint = '/products'
   const qs = `?offset=${offset}&limit=${limit}&tag=${tag || ''}`
   return fetchJSON(endpoint + qs)
 }
