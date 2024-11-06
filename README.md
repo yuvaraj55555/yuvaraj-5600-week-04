@@ -13,6 +13,7 @@
    - [Step 3: Complete the Lab Assignment](#step-3-complete-the-lab-assignment)
    - [Step 4: Submit Your Work via Pull Request](#step-4-submit-your-work-via-pull-request)
 
+
 ## Overview
 
 In this lab, we will be building a simple eCommerce server. We will be using Node.js and Express to build our server. We will use this as the basis for our future labs. This eCommerce server will be pretty basic. It will:
@@ -435,7 +436,7 @@ To complete this lab you will need to add the following features:
 
 Once you have completed the lab, please submit your lab by committing the code and creating a pull request against the `main` branch of your forked repository.
 
-Once you have a URL for your Pull Request, submit that URL with a brief message in Canvas against the Assignment.
+Once you have a URL for your Pull Request, submit that URL with a brief message in Canvas against the Assignment. 
 
 # Getting Started with GitHub and Codespaces
 
@@ -448,7 +449,7 @@ Forking a repository means making a copy of it under your GitHub account. This a
 1. **Open the Repository**: Start by navigating to the GitHub repository link provided by your instructor.
 2. **Click "Fork"**: In the top-right corner, find the “Fork” button and click it.
 3. **Select Your Account**: Choose your GitHub account as the destination for the fork. Once done, you’ll be redirected to your forked copy of the repository.
-
+   
    > **Tip**: Make sure you’re logged into your GitHub account, or you won’t see the option to fork!
 
 ## Step 2: Open the Repository in Codespaces
@@ -490,16 +491,15 @@ Once you’ve completed the assignment, it’s time to submit your work. You’l
 
 And that’s it! You’ve now completed your first lab assignment using GitHub and Codespaces. Well done!
 
+
 ### Additional Steps
 
 1. Open the terminal in Codespaces.
 2. Run the following commands to install dependencies and start the development server:
-
     ```sh
     npm install
     npm run dev
     ```
-
 3. You can now view the project in the browser by clicking the "Application" port in the Ports panel.
 
 Follow the instructions in the previous sections to complete the lab.
