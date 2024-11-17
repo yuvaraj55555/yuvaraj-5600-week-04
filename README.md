@@ -33,7 +33,7 @@ The frontend will be provided for you during this lab. We will focus 100% on bui
 
 - Sets up the server to listen on port 3000
 - Registers the `/products` route with the `listProducts` route handler
-- Configures the `listProducts` route handler to read, and return the data in the `data/products.json` file
+- Configures the `listProducts` route handler to read, and return the data in the `data/full-products.json` file
 - Configures the `public` directory for our node server to listen for static files
 
 2. Next you'll see our `public/index.html` file. This file will fetch our products from the `/products` endpoint and quickly renders them to the page. We won't go in too much detail
@@ -64,7 +64,7 @@ async function listProducts (req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*')
   
   // Read the products file
-  const productsFile = path.join(__dirname, 'data/products.json')
+  const productsFile = path.join(__dirname, 'data/full-products.json')
   
   try {
     const data = await fs.readFile(productsFile)
@@ -99,7 +99,7 @@ app.get('/products', api.listProducts)
 const fs = require('fs').promises
 const path = require('path')
 
-const productsFile = path.join(__dirname, 'data/products.json')
+const productsFile = path.join(__dirname, 'data/full-products.json')
 
 module.exports = {
   list
